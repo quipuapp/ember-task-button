@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   tagName: "button",
 
   attributeBindings: ['type', 'disabled'],
+  classNameBindings: ['task.isRunning:running'],
 
   idleText: null,
   runningText: null,
@@ -21,6 +22,12 @@ export default Ember.Component.extend({
     Ember.assert("You have to provide a task to `task-button`", this.get('task'));
     Ember.assert("You have to provide the `idleText` for the task button",
                  this.get('idleText'));
+
+    const runningClass = this.get('runningClass');
+
+    if (runningClass) {
+      this.set('classNameBindings', [`task.isRunning:${runningClass}`]);
+    }
   },
 
   text: Ember.computed('task.isRunning', function() {

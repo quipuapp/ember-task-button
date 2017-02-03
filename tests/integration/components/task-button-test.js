@@ -75,3 +75,56 @@ test('using it for form submit', function(assert) {
     assert.equal(this.$().text().trim(), "Submit the form", "renders the `idleText` again when the task finishes");
   });
 });
+
+test('it adds class `running` during task execution', function(assert) {
+  assert.expect(3);
+
+  this.render(hbs`
+    {{task-button
+      task=theTask
+      click=(perform theTask)
+      idleText="click me"
+      runningText="task is running"}}
+  `);
+
+  assert.notOk(this.$('button').hasClass('running'),
+              "it doesn't have class `running` before task starts");
+
+  this.$('button').click();
+
+  assert.ok(this.$('button').hasClass('running'),
+              "it has class `running` when task is running");
+
+  return wait().then( () => {
+    assert.notOk(this.$('button').hasClass('running'),
+                "it doesn't have class `running` when the task finished");
+  });
+});
+
+test('with `working` as customized running class', function(assert) {
+  assert.expect(4);
+
+  this.render(hbs`
+    {{task-button
+      task=theTask
+      click=(perform theTask)
+      idleText="click me"
+      runningText="task is running"
+      runningClass="working"}}
+  `);
+
+  assert.notOk(this.$('button').hasClass('working'),
+              "it doesn't have class `working` before task starts");
+
+  this.$('button').click();
+
+  assert.ok(this.$('button').hasClass('working'),
+              "it has class `working` when task is running");
+  assert.notOk(this.$('button').hasClass('running'),
+              "it doesn't have class `running` when task is running");
+
+  return wait().then( () => {
+    assert.notOk(this.$('button').hasClass('working'),
+                "it doesn't have class `working` when the task finished");
+  });
+});

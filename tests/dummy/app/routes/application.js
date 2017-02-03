@@ -3,11 +3,11 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Route.extend({
   doSomething: task(function * () {
-    console.log("Doing something");
+    console.debug("Doing something");
 
     yield timeout(800);
 
-    console.log("Done doing something");
+    console.debug("Done doing something");
   }),
 
   setupController(controller, model) {
