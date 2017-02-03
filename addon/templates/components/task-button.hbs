@@ -1,1 +1,13 @@
-{{text}}
+{{#if hasBlock}}
+  {{#if task.isRunning}}
+    {{#if (hasBlock "inverse")}}
+      {{yield to="inverse"}}
+    {{else}}
+      {{yield}}
+    {{/if}}
+  {{else}}
+    {{yield}}
+  {{/if}}
+{{else}}
+  {{text}}
+{{/if}}

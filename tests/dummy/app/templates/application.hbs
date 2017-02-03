@@ -34,3 +34,29 @@
     runningText="Working on it"
     disabled=doSomething.isRunning}}
 </p>
+
+<p>
+  With block:
+
+  {{#task-button
+    task=doSomething
+    click=(perform doSomething)}}
+
+    Holaaaaa!!
+  {{/task-button}}
+</p>
+
+<p>
+  With block and inverse block:
+
+  {{#task-button
+    task=doSomething
+    click=(perform doSomething)}}
+
+    Holaaaaa!!
+
+  {{else}}
+
+    Workiiiing...
+  {{/task-button}}
+</p>

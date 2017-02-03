@@ -128,3 +128,37 @@ test('with `working` as customized running class', function(assert) {
                 "it doesn't have class `working` when the task finished");
   });
 });
+
+test('using block works', function(assert) {
+  assert.expect(1);
+
+  this.render(hbs`
+    {{#task-button task=theTask}}
+      click me
+    {{/task-button}}
+  `);
+
+  assert.equal(this.$().text().trim(), "click me");
+});
+
+test('with inverse block renders the `else` block when the task is running', function(assert) {
+  assert.expect(3);
+
+  this.render(hbs`
+    {{#task-button task=theTask click=(perform theTask)}}
+      click me
+    {{else}}
+      Ruunnnniiiiing...
+    {{/task-button}}
+  `);
+
+  assert.equal(this.$().text().trim(), "click me", "renders the `idleText` when idle");
+
+  this.$('button').click();
+
+  assert.equal(this.$().text().trim(), "Ruunnnniiiiing...", "it shows the `runningText` when running");
+
+  return wait().then( () => {
+    assert.equal(this.$().text().trim(), "click me", "renders the `idleText` again when the task finishes");
+  });
+});
