@@ -1,5 +1,35 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<p>
+  Simplest scenario:
 
-{{outlet}}
+  {{task-button
+    task=doSomething
+    click=(perform doSomething)
+    idleText="Click me"
+    runningText="Working on it"
+    type="button"}}
+</p>
+
+<p>
+  Submitting a form
+
+  <form {{action (action 'doSomething') on='submit'}}>
+    <input neme="example">
+
+    {{task-button
+      task=doSomething
+      idleText="Submit the form"
+      runningText="Working on it"
+      type="submit"}}
+  </form>
+</p>
+
+<p>
+  Can disable the button:
+
+  {{task-button
+    task=doSomething
+    click=(perform doSomething)
+    idleText="Submit the form"
+    runningText="Working on it"
+    disabled=doSomething.isRunning}}
+</p>
