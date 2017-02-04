@@ -1,5 +1,18 @@
-<p>
-  Simplest scenario:
+<div class="example">
+  <p>
+    Simplest scenario:
+  </p>
+
+
+  <pre>
+    \{{task-button
+      task=doSomething
+      click=(perform doSomething)
+      idleText="Click me"
+      runningText="Working on it"
+      type="button"
+      runningClass="working"}}
+  </pre>
 
   {{task-button
     task=doSomething
@@ -8,24 +21,53 @@
     runningText="Working on it"
     type="button"
     runningClass="working"}}
-</p>
+</div>
 
-<p>
-  Submitting a form
+<div class="example">
+  <p>
+    Submitting a form
+  </p>
+
+  <pre>
+    &lt;form \{{action (action 'doSomething') on='submit'}}&gt;
+      &lt;label for="name"&gt;Your name: &lt;/label&gt;
+      &lt;input type="text" neme="example"&gt;
+
+      \{{task-button
+        task=doSomething
+        idleText="Submit the form"
+        runningText="Working on it"
+        type="submit"}}
+    &lt;/form&gt;
+  </pre>
 
   <form {{action (action 'doSomething') on='submit'}}>
-    <input neme="example">
+    <label for="name">Your name: </label>
+    <input type="text" neme="example">
 
-    {{task-button
-      task=doSomething
-      idleText="Submit the form"
-      runningText="Working on it"
-      type="submit"}}
+    <p>
+      {{task-button
+        task=doSomething
+        idleText="Submit the form"
+        runningText="Working on it"
+        type="submit"}}
+    </p>
   </form>
-</p>
+</div>
 
-<p>
-  Can disable the button:
+<div class="example">
+  <p>
+    Can disable the button:
+  </p>
+
+  <pre>
+    \{{task-button
+      task=doSomething
+      click=(perform doSomething)
+      idleText="Go go go!!"
+      runningText="Working on it"
+      disabled=doSomething.isRunning}}
+  </pre>
 
   {{task-button
     task=doSomething
@@ -33,10 +75,21 @@
     idleText="Go go go!!"
     runningText="Working on it"
     disabled=doSomething.isRunning}}
-</p>
+</div>
 
-<p>
-  With block:
+<div class="example">
+  <p>
+    With block:
+  </p>
+
+  <pre>
+    \{{#task-button
+      task=doSomething
+      click=(perform doSomething)}}
+
+      Holaaaaa!!
+    \{{/task-button}}
+  </pre>
 
   {{#task-button
     task=doSomething
@@ -44,19 +97,28 @@
 
     Holaaaaa!!
   {{/task-button}}
-</p>
+</div>
 
-<p>
-  With block and inverse block:
+<div class="example">
+  <p>
+    With block and inverse block:
+  </p>
+
+  <pre>
+    \{{#task-button
+      task=doSomething
+      click=(perform doSomething)}}
+      Holaaaaa!!
+    \{{else}}
+      Workiiiing...
+    \{{/task-button}}
+  </pre>
 
   {{#task-button
     task=doSomething
     click=(perform doSomething)}}
-
     Holaaaaa!!
-
   {{else}}
-
     Workiiiing...
   {{/task-button}}
-</p>
+</div>

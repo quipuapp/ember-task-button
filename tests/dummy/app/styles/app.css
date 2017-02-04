@@ -1,0 +1,31 @@
+div.example {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-bottom: 1px dashed #000;
+}
+
+button {
+  padding: .7em 1.5em;
+  background-color: #44b;
+  border-radius: 1em;
+  border: 2px solid #222;
+  color: #ddd;
+}
+
+button.running, button.running:hover {
+  background-color: #ddd;
+  color: #333;
+}
+
+button.working, button.working:hover {
+  background-color: #822;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #22e;
+}
+
+button:focus {
+  outline: none;
+}
