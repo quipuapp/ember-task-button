@@ -1,7 +1,7 @@
 {
   "name": "ember-task-button",
   "version": "0.0.1",
-  "description": "A simple button with user feedback  component for ember intended to be used with ember-concurrency",
+  "description": "A simple button component with user feedback for ember intended to be used with ember-concurrency tasks",
   "keywords": [
     "ember-addon"
   ],
@@ -11,7 +11,10 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository":  {
+    "type": "git",
+    "url": "git+https://github.com/quipuapp/ember-task-button.git"
+  },
   "scripts": {
     "build": "ember build",
     "start": "ember server",
